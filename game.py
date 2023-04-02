@@ -3,27 +3,27 @@ import random
 import numpy as np
 
 
-buffer = 10
-screen_width, screen_height = 1000, 600
+buffer = 5
+screen_width, screen_height = 256, 256
 
 config = {
 
     "large": {
-        "number": 7,
-        "location": 115,
-        "scale": 100,
+        "number": 5,
+        "location": int(.15*screen_height),
+        "scale": int(.15*screen_width),
         "points": 10
         },
     "medium": {
-        "number": 8,
-        "location": 170,
-        "scale": 50,
+        "number": 5,
+        "location": int(.25*screen_height),
+        "scale": int(.07*screen_width),
         "points": 25
         },
     "small": {
         "number": 5,
-        "location": 215,
-        "scale": 25,
+        "location": int(.35*screen_height),
+        "scale": int(.05*screen_width),
         "points": 30
         }
 
@@ -83,13 +83,12 @@ pygame.init()
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode((screen_width, screen_height))
 
-background_image = pygame.image.load("background.jpg").convert()
+background_image = pygame.transform.scale(pygame.image.load("background.jpg").convert(), (screen_height, screen_width))
 
-crosshair_image = pygame.transform.scale(pygame.image.load('crosshair3.png'), (200, 200))
+crosshair_image = pygame.transform.scale(pygame.image.load('crosshair.png'), (int(.3*screen_width), int(.3*screen_width)))
 crosshair_rect = crosshair_image.get_rect()
 
 pygame.mouse.set_visible(False)
-
 
 score = 0
 targets = generate_groups(screen, config)
@@ -114,7 +113,7 @@ while running:
     screen.blit(pygame.font.Font(None, 36).render("Score: " + str(score), True, (255, 255, 255)), (10, 10))
 
     if get_count(targets) == 0:
-        screen.blit(pygame.font.Font(None, 36).render("YOU WIN!", True, (255, 255, 255)), (150, 150))
+        screen.blit(pygame.font.Font(None, 36).render("YOU WIN!", True, (255, 255, 255)), (.4*screen_height, 0.4*screen_width))
 
 
     pygame.display.update()
@@ -122,4 +121,6 @@ while running:
 
 # Quit Pygame
 pygame.quit()
+
+
 
