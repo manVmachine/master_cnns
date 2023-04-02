@@ -4,25 +4,25 @@ import numpy as np
 
 
 buffer = 5
-screen_width, screen_height = 256, 256
+screen_width, screen_height = 1000, 600
 
 config = {
 
     "large": {
         "number": 5,
-        "location": int(.15*screen_height),
+        "location": int(.25*screen_height),
         "scale": int(.15*screen_width),
         "points": 10
         },
     "medium": {
         "number": 5,
-        "location": int(.25*screen_height),
+        "location": int(.35*screen_height),
         "scale": int(.07*screen_width),
         "points": 25
         },
     "small": {
         "number": 5,
-        "location": int(.35*screen_height),
+        "location": int(.45*screen_height),
         "scale": int(.05*screen_width),
         "points": 30
         }
@@ -83,7 +83,7 @@ pygame.init()
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode((screen_width, screen_height))
 
-background_image = pygame.transform.scale(pygame.image.load("background.jpg").convert(), (screen_height, screen_width))
+background_image = pygame.transform.scale(pygame.image.load("background.jpg").convert(), (screen_width, screen_height))
 
 crosshair_image = pygame.transform.scale(pygame.image.load('crosshair.png'), (int(.3*screen_width), int(.3*screen_width)))
 crosshair_rect = crosshair_image.get_rect()
@@ -121,6 +121,4 @@ while running:
 
 # Quit Pygame
 pygame.quit()
-
-
 
